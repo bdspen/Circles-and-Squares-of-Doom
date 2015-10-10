@@ -17,6 +17,7 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
     setInterval(factory.timer, 1000);
     // console.log('countdown works');
   }
+
   factory.timer = function()
   {
     factory.timerValue -= 1;
@@ -31,6 +32,11 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
    factory.boardIncrease = function() {
       factory.boardMax++;
       factory.dotMax++;
+      var barWidth = (factory.boardMax -5) * 10;
+      $(document).ready(function() {
+        $(".progress-bar").css("width", barWidth + "%");
+      });
+
       if (factory.boardMax == 15) {
         alert("The board has grown too large and consumed your soul. You lose!");
         document.location.reload(true);
@@ -54,6 +60,10 @@ factory.boardSinker = function() {
     factory.boardDecrease = function() {
         factory.boardMax--;
         factory.dotMax--;
+        var barWidth = (factory.boardMax -5) * 10;
+        $(document).ready(function() {
+          $(".progress-bar").css("width", barWidth + "%");
+        });
         // factory.boardAdd();
         if (factory.boardMax == 4) {
           alert("You have sunk the soul of the board. You Win!")
