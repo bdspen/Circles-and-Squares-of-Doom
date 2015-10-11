@@ -32,7 +32,7 @@
       <hr>
       <div class="col-xs-7">
         <div ng-show="showme">
-          <table>
+          <table class="board">
             <!-- playing board -->
             <tr ng-repeat="row in TimerFactory.board.rows">
               <td class="animated" ng-repeat="dot in row.dots" ng-mouseenter="TimerFactory.mouseEnter(dot); TimerFactory.checkForSquare(dot)" ng-mousedown="TimerFactory.addClick(dot)" ng-mouseup="TimerFactory.mouseUp(dot)">
