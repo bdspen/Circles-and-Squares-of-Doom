@@ -12,71 +12,71 @@ circlesSquares.factory('TimerFactory', function TimerFactory() {
   factory.dotMin = 0;
   factory.dotMax = 10;
   factory.timerValue = 30;
-//`time`r
+
+  //countdown, executes timer every second
   factory.countdown = function() {
     setInterval(factory.timer, 1000);
-    // console.log('countdown works');
   }
-
-  factory.timer = function()
-  {
+  //subracts one from time
+  factory.timer = function(){
     factory.timerValue -= 1;
     if(factory.timerValue == 0){
       factory.boardIncrease();
-      // console.log(factory.board);
       factory.timerValue = 30;
       return factory.timerValue;
     }
   }
-//board increase
+  //board increase
    factory.boardIncrease = function() {
       factory.boardMax++;
       factory.dotMax++;
+
+      //progress bar increase
       var barWidth = (factory.boardMax -5) * 10;
       $(document).ready(function() {
         $(".progress-bar").css("width", barWidth + "%");
       });
 
+      //game lose condition
       if (factory.boardMax == 15) {
         alert("The board has grown too large and consumed your soul. You lose!");
         document.location.reload(true);
       }
-      // factory.boardAdd();
-      // console.log(factory.boardMax);
-      // console.log(factory.dotMax);
+      //creates new board with new size and dots
       factory.createBoard();
       factory.placeInitialDots();
-      // factory.repopulate();
-  }
-
-factory.boardSinker = function() {
-  if( factory.boardShrink <= 0 ) {
-    factory.boardDecrease();
-    factory.boardShrink = 50;
-  }
-
-}
-  //board decrease
-    factory.boardDecrease = function() {
-        factory.boardMax--;
-        factory.dotMax--;
-        var barWidth = (factory.boardMax -5) * 10;
-        $(document).ready(function() {
-          $(".progress-bar").css("width", barWidth + "%");
-        });
-        // factory.boardAdd();
-        if (factory.boardMax == 4) {
-          alert("You have sunk the soul of the board. You Win!")
-          document.location.reload(true);
-        }
-        console.log(factory.boardMax);
-        console.log(factory.dotMax);
-        factory.createBoard();
-        factory.placeInitialDots();
-        // factory.repopulate();
     }
 
-//createBoard
+  factory.boardSinker = function() {
+    if( factory.boardShrink <= 0 ) {
+      factory.boardDecrease();
+      factory.boardShrink = 50;
+    }
+  }
+
+  //board decrease
+  factory.boardDecrease = function() {
+      factory.boardMax--;
+      factory.dotMax--;
+
+      //progress bar decrease
+      var barWidth = (factory.boardMax -5) * 10;
+      $(document).ready(function() {
+        $(".progress-bar").css("width", barWidth + "%");
+      });
+
+      //game win condition
+      if (factory.boardMax == 4) {
+        alert("You have sunk the soul of the board. You Win!")
+        document.location.reload(true);
+      }
+
+      //creates new board with new size and dots
+      factory.createBoard();
+      factory.placeInitialDots();
+  }
+
+  //createBoard
   factory.createBoard = function() {
     factory.board = {};
     factory.board.rows = [];
@@ -95,8 +95,7 @@ factory.boardSinker = function() {
     return factory.board;
   };
 
-///////
-    factory.randomColorGenerator = function() {
+  factory.randomColorGenerator = function() {
     factory.number = Math.round(Math.random() * 4);
     factory.color = "";
     switch(factory.number) {
@@ -109,31 +108,31 @@ factory.boardSinker = function() {
     return factory.color;
   }
 
-//gets the position of a dot, returns that dot object
-    factory.getDot = function(board, row, column){
+  //gets the position of a dot, returns that dot object
+  factory.getDot = function(board, row, column){
     return factory.board.rows[row].dots[column];
   }
 
   //checks for a dot above the empty spot and moves it down
-     factory.dotDrop = function() {
-       for(var i = factory.dotMin; i < factory.dotMax; i++) {
-         for(var j = factory.dotMin; j < factory.dotMax; j++) {
-           //if the current position is empty and the position above is not empty...
-           if ((factory.board.rows[i].dots[j].hasDot == false) && (factory.board.rows[factory.dotMin].dots[j].hasDot != false)) {
-             //sets the empty hasDot spot to true
-             factory.board.rows[i].dots[j].hasDot = true;
-             //sets the spot to the color of the spot directly above.
-             factory.board.rows[i].dots[j].color = factory.board.rows[i-1].dots[j].color;
-             //sets the spot directly above to false making an empty spot.
-             factory.board.rows[i-1].dots[j].hasDot = false;
-                   }
-         }
-       }
-     }
+  factory.dotDrop = function() {
+    for(var i = factory.dotMin; i < factory.dotMax; i++) {
+        for(var j = factory.dotMin; j < factory.dotMax; j++) {
+          //if the current position is empty and the position above is not empty...
+          if ((factory.board.rows[i].dots[j].hasDot == false) && (factory.board.rows[factory.dotMin].dots[j].hasDot != false)) {
+            //sets the empty hasDot spot to true
+            factory.board.rows[i].dots[j].hasDot = true;
+            //sets the spot to the color of the spot directly above.
+            factory.board.rows[i].dots[j].color = factory.board.rows[i-1].dots[j].color;
+            //sets the spot directly above to false making an empty spot.
+            factory.board.rows[i-1].dots[j].hasDot = false;
+          }
+        }
+    }
+  }
 
-//populates the board on start
-//changes all dots within range to hasDot = true
-    factory.placeInitialDots = function(board) {
+  //populates the board on start
+  //changes all dots within range to hasDot = true
+  factory.placeInitialDots = function(board) {
     for(var i = factory.dotMin; i < factory.dotMax; i++) {
       for(var j = factory.dotMin; j < factory.dotMax; j++) {
         factory.board.rows[i].dots[j].hasDot = true;
@@ -144,31 +143,30 @@ factory.boardSinker = function() {
     }
   }
   //repopulates by looking at top row of the board and "generating" new dots.
-    factory.repopulate = function(dot) {
-      for(var i = factory.dotMin; i < factory.dotMin + 1; i++) {
-        for(var j = factory.dotMin; j < factory.dotMax; j++) {
-          if (factory.board.rows[i].dots[j].hasDot == false){
-            factory.board.rows[i].dots[j].hasDot = true;
-            factory.board.rows[i].dots[j].color = factory.randomColorGenerator();
-            factory.score++;
-            factory.boardShrink--;
-            console.log(factory.boardShrink)
-          }
+  factory.repopulate = function(dot) {
+    for(var i = factory.dotMin; i < factory.dotMin + 1; i++) {
+      for(var j = factory.dotMin; j < factory.dotMax; j++) {
+        if (factory.board.rows[i].dots[j].hasDot == false){
+          factory.board.rows[i].dots[j].hasDot = true;
+          factory.board.rows[i].dots[j].color = factory.randomColorGenerator();
+          factory.score++;
+          factory.boardShrink--;
+          console.log(factory.boardShrink)
         }
       }
     }
+  }
 
 //////////////////CLICK FUNCTIONS
 
-//makes the magic happen Steven?
   factory.addClick = function(dot) {
     factory.clicked = true;
     factory.clickedColor = dot.color;
     factory.hoverXPos = dot.xPos;
     factory.hoverYPos = dot.yPos;
     factory.OGDot = dot;
+    //counter is how many spaces the mouse has moved
     factory.counter++;
-    // $scope.repopulate(dot);
   }
   //mouse holddown functionality
   factory.mouseEnter = function(dot) {
@@ -201,7 +199,6 @@ factory.boardSinker = function() {
               }
             }
           } //end checksquare if
-
         } else {
           factory.hoverXPos = 100;
           factory.hoverYPos = 100;
@@ -209,6 +206,7 @@ factory.boardSinker = function() {
       }
     }
   }
+
   //mouse unclick, repopulate, plays sound, sets counter to 0
   factory.mouseUp = function(dot) {
     factory.clicked = false;
@@ -220,10 +218,12 @@ factory.boardSinker = function() {
         factory.repopulate();
       }
     }
+    //plays sound for 2 or 3 point string
     if ((factory.counter > 1) && (factory.counter < 4)){
       var scoreSound = document.getElementById("scoreSound");
       scoreSound.play();
     }
+    //play sound for greater than 4 points
     if (factory.counter >= 4) {
       var scoreSound2 = document.getElementById("scoreSound2");
       scoreSound2.play();
@@ -231,7 +231,6 @@ factory.boardSinker = function() {
 
     factory.counter = 0;
   }
-
 
   factory.playSoundtrack = function() {
     var soundTrack = document.getElementById("soundTrack");
@@ -242,8 +241,6 @@ factory.boardSinker = function() {
       soundTrack.pause();
     }
   }
-
-
 
   return factory;
 });
