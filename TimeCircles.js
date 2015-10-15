@@ -808,7 +808,7 @@
         start: true,
         animation: "smooth",
         count_past_zero: true,
-        circle_bg_color: "#60686F",
+        circle_bg_color: "#050A14",
         use_background: true,
         fg_width: 0.1,
         bg_width: 1.2,
@@ -836,7 +836,7 @@
             Seconds: {
                 show: true,
                 text: "Seconds",
-                color: "#F99"
+                color: "#1F3D7A"
             }
         }
     };

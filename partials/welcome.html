@@ -1,0 +1,25 @@
+<div class="jumbotron">
+
+  <h1>Welcome</h1>
+  <button class="btn btn-danger btn-lg" ui-sref="game">Click to Start</button>
+  <button class="btn btn-warning btn-lg"ng-click="show=true">Rules & Directions</button>
+
+  <div class="rules" ng-show="show">
+    <h2>Rules</h2>
+    <ul>
+      <li>Click and drag to select flames.</li>
+      <li>Connect strings of two or more consecutive flames to get points.</li>
+      <li>Connect flames in a square shape to clear all flames of that color on the board and get a 2X bonus.</li>
+      <li>After 30s the board will refresh and increase in size.</li>
+      <li>After you earn 50 points the board will shrink by a space.</li>
+    </ul>
+    <h4>To Win</h4>
+    <ul>
+      <li>Reduce the size of the board to 5x5 and clear it.</li>
+    </ul>
+    <h4>To Lose</h4>
+    <ul>
+      <li>Fail to beat the clock and let the board grow to a 15 x 15 grid</li>
+    </ul>
+  </div>
+</div>

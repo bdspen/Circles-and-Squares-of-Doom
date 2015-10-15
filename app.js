@@ -2,13 +2,16 @@ var circlesSquares = angular.module('circlesSquares',['ui.router']);
 
 circlesSquares.config(function($stateProvider, $urlRouterProvider){
 
-  //make welcome page route
+  //welcome page route
+  $stateProvider.state('welcome', {
+    url:"",
+    templateUrl: "partials/welcome.html",
+  });
 
   //route to game
   $stateProvider.state('game', {
-    url:"",
+    url:"/game",
     templateUrl: "partials/game.html",
     controller: "BoardCtrl"
-
   });
 });
