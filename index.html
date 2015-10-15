@@ -3,64 +3,26 @@
 <html ng-app= "circlesSquares">
   <head>
     <meta charset="UTF-8">
-    <script src="js/jquery-1.11.3.js"></script>
+    <!-- <script src="scripts.js"></script> -->
+    <script src="lib/jquery-1.11.3.js"></script>
+    <link rel="stylesheet" href="TimeCircles.css">
+    <script src="TimeCircles.js"></script>
+
     <script src="lib/angular.js"></script>
     <script src="lib/angular-ui-router.js"></script>
-    <script src="js/scripts.js"></script>
-    <script type="text/javascript" src="TimeCircles.js"></script>
     <script src="app.js"></script>
     <script src="services/TimerFactory.js"></script>
     <script src="controllers/BoardController.js"></script>
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="TimeCircles.css">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Circles and Squares of Doom</title>
+    <title>Connect and match</title>
   </head>
   <body>
-    <div class="container">
-
     <audio id="scoreSound" src="sounds/coin.wav"></audio>
     <audio id="scoreSound2" src="sounds/levelup.wav"></audio>
     <audio id="squareScore" src="sounds/bubbling.wav"></audio>
     <audio id="soundTrack" src="sounds/coastal.mp3"></audio>
-    <!-- <h1><img src="images/logo2.gif"></img></h1> -->
-    <div ng-controller="BoardCtrl">
-      <button class="btn btn-warning" ng-click="TimerFactory.playSoundtrack()" name="Music">Music</button>
-
-      <button class="btn btn-success" id="timerStart" ng-click="showme=true; TimerFactory.countdown()">Start</button>
-      <hr>
-      <div class="col-xs-7">
-        <div ng-show="showme">
-          <table class="board">
-            <!-- playing board -->
-            <tr ng-repeat="row in TimerFactory.board.rows">
-              <td class="animated" ng-repeat="dot in row.dots" ng-mouseenter="TimerFactory.mouseEnter(dot); TimerFactory.checkForSquare(dot)" ng-mousedown="TimerFactory.addClick(dot)" ng-mouseup="TimerFactory.mouseUp(dot)">
-                <img class="animated slideInDown" ng-if="dot.color=='red' && dot.hasDot" src="images/red.svg" height=40px>
-                <img class="animated slideInDown" ng-if="dot.color=='orange' && dot.hasDot" src="images/orange.svg" height=40px>
-                <img class="animated slideInDown" ng-if="dot.color=='yellow' && dot.hasDot" src="images/yellow.svg" height=40px>
-                <img class="animated slideInDown" ng-if="dot.color=='green' && dot.hasDot" src="images/green.svg" height=40px>
-                <img class="animated slideInDown" ng-if="dot.color=='blue' && dot.hasDot" src="images/blue.svg" height=40px>
-                <!-- <img ng-if="!dot.hasDot" src="images/blank2.jpg" height=40px> -->
-              </td>
-            </tr>
-          </table>
-          <div>
-            <h1>Current Score: {{TimerFactory.score}}</h1>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-5">
-        <div class="timer" data-timer = "30">
-        </div>
-        <div class="progress">
-          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
-            <span class="sr-only"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-
+    <div ui-view></div>
+  </body>
 </html>
