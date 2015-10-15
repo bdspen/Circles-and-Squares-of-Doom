@@ -10,8 +10,8 @@ img {
 }
 body {
   background-image: url(../images/jackdaw-569330.jpg);
+  background-repeat: no-repeat;
   background-size: cover;
-  background-blend-mode: difference;
   background-color: black;
 }
 h1 {
