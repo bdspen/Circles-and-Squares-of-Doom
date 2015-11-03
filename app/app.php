@@ -4,10 +4,10 @@
     $app = new Silex\Application();
     $app['debug'] = true;
 
-    // $server = 'mysql:host=localhost;dbname=';
-    // $username = 'root';
-    // $password = 'root';
-    // $DB = new PDO($server, $username, $password);
+    $server = 'mysql:host=localhost;dbname=connect';
+    $username = 'root';
+    $password = 'root';
+    $DB = new PDO($server, $username, $password);
 
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
