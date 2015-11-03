@@ -3,13 +3,13 @@
     class User
     {
         private $user_name;
-        private $password:
+        private $password;
         private $scores;
         private $id;
 
         function __construct($user_name, $password, $scores, $id = null)
         {
-            this->user_name = $user_name;
+            $this->user_name = $user_name;
             $password_hash = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
             $this->password = $password_hash;
             $this->scores = $scores;
@@ -67,6 +67,39 @@
 			$GLOBALS['DB']->exec("UPDATE users SET user_name = '{$new_user_name}' WHERE id = {$this->getId()};");
 			$this->setUserName($new_user);
 		}
+        static function getAll()
+		{
+			$returned_users = $GLOBALS['DB']->query("SELECT * FROM users;");
+			$users = array();
+			foreach($returned_users as $user)
+			{
+				$new_user_name = $user['user_name'];
+				$new_password = $user['password'];
+				$new_signed_in = (int) $user['scores'];
+				$new_id = $user['id'];
+				$new_user = new User($new_user_name, $new_password, $new_scores, $new_id);
+				$new_user->setPassword($new_password);
+				array_push($users, $new_user);
+			}
+			return $users;
+		}
 
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM users;");
+        }
+
+        static function find($search_id)
+        {
+            $found_user = null;
+            $users = User::getAll();
+            foreach($users as $user) {
+                $user_id = $user->getId();
+                if($user_id == $search_id) {
+                    $found_user = $user;
+                }
+            }
+            return $found_user;
+        }
     }
 ?>
