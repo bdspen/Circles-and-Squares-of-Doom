@@ -26,10 +26,10 @@ console.log("Connected with Database");
 
 /*Start the Server*/
 
-app.listen(8080,function(){
-console.log("It's Started on PORT 8080");
+app.listen(3306,function(){
+console.log("It's Started on PORT 3306");
 });
 
 app.get('/',function(req,res){
-res.sendfile('index.html');
+res.sendFile(__dirname + '/index.html');
 });
