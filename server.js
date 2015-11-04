@@ -5,7 +5,7 @@ var app = express();
 * Configure MySQL parameters.
 */
 var connection = mysql.createConnection({
-host : "localhost:8889",
+host : "localhost",
 user : "root",
 password : "root",
 database : "connect"
@@ -28,4 +28,8 @@ console.log("Connected with Database");
 
 app.listen(8080,function(){
 console.log("It's Started on PORT 8080");
+});
+
+app.get('/',function(req,res){
+res.sendfile('index.html');
 });
