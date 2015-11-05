@@ -17,9 +17,11 @@ body {
 h1 {
   color: white;
 }
+h2 {
+  color: white;
+}
 .jumbotron h1 {
   color: white;
-
 }
 .jumbotron {
 background-color: transparent;

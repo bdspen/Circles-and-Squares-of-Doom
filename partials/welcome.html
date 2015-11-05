@@ -24,13 +24,18 @@
   </div>
 
   <div>
-    <form method="POST">
-      <input type="text" ng-model="user.userName" name="username" placeholder="username"/>
-      <br/>
-      <input type="text" ng-model="user.password" name="password" placeholder="password"/>
-      <br/>
-
-    <button data-ng-click="addNewUser()" class="btn btn-primary btn-xlarge">Add User</button>
+    <form classmethod="POST">
+      <br>
+      <div class="col-md-4">
+        <div class="form-group">
+          <h2 >Create an Account</h2>
+          <input class="form-control" type="text" ng-model="user.userName" name="username" placeholder="username"/>
+          <br/>
+          <input class="form-control" type="text" ng-model="user.password" name="password" placeholder="password"/>
+          <br/>
+          <button data-ng-click="addNewUser()" class="btn btn-primary btn-lg">Add User</button>
+        </div>
+      </div>
     </form>
   </div>
 
