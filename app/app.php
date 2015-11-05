@@ -22,6 +22,9 @@
         return $app['twig']->render('index.html');
     });
 
+    $jsondata = file_get_contents('login.json');
+    $data = json_decode($jsondata, true);
+
     return $app;
 
 ?>

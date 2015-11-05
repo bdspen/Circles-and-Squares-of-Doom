@@ -6,6 +6,7 @@ circlesSquares.config(function($stateProvider, $urlRouterProvider){
   $stateProvider.state('welcome', {
     url:"",
     templateUrl: "partials/welcome.html",
+    controller: "UserCtrl"
   });
 
   //route to game

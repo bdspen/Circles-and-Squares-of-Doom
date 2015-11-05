@@ -22,4 +22,16 @@
       <li>Fail to beat the clock and let the board grow to a 15 x 15 grid</li>
     </ul>
   </div>
+
+  <div>
+    <form method="POST">
+      <input type="text" ng-model="user.userName" name="username" placeholder="username"/>
+      <br/>
+      <input type="text" ng-model="user.password" name="password" placeholder="password"/>
+      <br/>
+
+    <button data-ng-click="addNewUser()" class="btn btn-primary btn-xlarge">Add User</button>
+    </form>
+  </div>
+
 </div>
