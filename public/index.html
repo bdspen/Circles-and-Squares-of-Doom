@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html ng-app= "circlesSquares">
+  <head>
+    <meta charset="UTF-8">
+
+    <title>Connect and match</title>
+    <!-- // <script src="public/lib/jquery-1.11.3.js"></script> -->
+    <!-- // <script src="public/scripts.js"></script> -->
+    <!-- <link rel="stylesheet" href="public/TimeCircles.css"> -->
+    <!-- // <script src="public/TimeCircles.js"></script> -->
+    <script src="public/lib/angular.js"></script>
+    <script src="public/lib/angular-ui-router.js"></script>
+    <script src="public/app.js"></script>
+    <script src="public/services/TimerFactory.js"></script>
+    <script src="public/controllers/BoardController.js"></script>
+    <link rel="stylesheet" href="public/css/animate.css">
+    <link rel="stylesheet" href="public/css/bootstrap.css">
+    <link rel="stylesheet" href="public/css/styles.css">
+  </head>
+  <body>
+    <audio id="scoreSound" src="public/sounds/coin.wav"></audio>
+    <audio id="scoreSound2" src="public/sounds/levelup.wav"></audio>
+    <audio id="squareScore" src="public/sounds/bubbling.wav"></audio>
+    <audio id="soundTrack" src="public/sounds/coastal.mp3"></audio>
+    <div class="container">
+      <div ui-view></div>
+    </div>
+  </body>
+</html>
